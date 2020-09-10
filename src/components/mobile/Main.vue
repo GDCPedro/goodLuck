@@ -95,12 +95,6 @@ $footer-height: 2rem;
           border-right: 0.01rem solid #333;
         }
       }
-
-      // .devider {
-      //   width: 0.01rem;
-      //   height: 100%;
-      //   background-color: #333;
-      // }
     }
 
     .info {

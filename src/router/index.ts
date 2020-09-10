@@ -1,17 +1,28 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
+import pcRouter from "./pc";
+import { isPC } from "@/utils/index";
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
+  ...pcRouter,
   {
     path: "/",
-    redirect: "/index"
+    redirect: isPC() ? "/pc/index" : "/index"
   },
   {
-    path: "/index/:asin_id/:suffix",
+    path: "/index/:asin_id?/:suffix?",
     name: "index",
-    component: () => import("@/views/mobile/index.vue")
+    component: () => import("@/views/mobile/index.vue"),
+    beforeEnter: (to, from, next) => {
+      if (isPC()) {
+        return next({
+          path: `/pc${to.path}`
+        });
+      }
+      next();
+    }
   },
   {
     path: "/draw",
@@ -43,10 +54,5 @@ const routes: Array<RouteConfig> = [
 const router = new VueRouter({
   routes
 });
-
-// router.beforeEach((to, from, next) => {
-//   window.scrollTo(0, 0);
-//   next();
-// });
 
 export default router;
