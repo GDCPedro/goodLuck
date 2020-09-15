@@ -68,6 +68,10 @@ export default class Machine extends Vue {
     }
   }
 
+  mounted() {
+    this.autoShowAward();
+  }
+
   /**
    * 判断奖品滚动的图片都加载完成
    */
@@ -119,14 +123,27 @@ export default class Machine extends Vue {
     }`);
   }
 
+  autoShowAward() {
+    if (this.$route.query.mission) {
+      service.warrantyBegin().then(res => {
+        if (res.code === 0 || res.code === 1001) {
+          newCongratulations.open(
+            res.data,
+            Number(this.$route.query.mission) || 1
+          );
+        }
+      });
+    }
+  }
+
   warrantyBegin() {
     this.buttonPressed = true;
-    Toast.loading({ duration: 0 });
+    // Toast.loading({ duration: 0 });
 
     service
       .warrantyBegin()
       .then(res => {
-        Toast.clear();
+        // Toast.clear();
         if (res.code === 0) {
           this.startRoll();
 
@@ -138,12 +155,13 @@ export default class Machine extends Vue {
             }, 500);
           }, 6000);
         } else if (res.code === 1001) {
+          // 已参加
           this.toSelectedAward(res.data);
           newCongratulations.open(res.data);
         }
       })
       .finally(() => {
-        Toast.clear();
+        // Toast.clear();
         this.buttonPressed = false;
       });
   }
@@ -200,7 +218,8 @@ export default class Machine extends Vue {
       }
 
       .award-scroll {
-        transform: translateX(-0.87rem);
+        // transform: translateX(-0.87rem);
+        transform: translateX(-3.21rem);
 
         height: 100%;
         white-space: nowrap;

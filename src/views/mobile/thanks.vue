@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
 import { State } from "vuex-class";
 
 @Component({})
@@ -50,6 +50,7 @@ export default class Thanks extends Vue {
 
 <style lang="scss" scoped>
 .thanks {
+  min-height: 100%;
   &-main {
     padding: 0.2rem;
     margin-top: 0.24rem;

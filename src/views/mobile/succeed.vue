@@ -59,6 +59,8 @@ export default class Thanks extends Vue {
 
 <style lang="scss" scoped>
 .thanks {
+  min-height: 100%;
+
   &-main {
     padding: 0.2rem;
     margin-top: 0.24rem;

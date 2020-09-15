@@ -15,14 +15,12 @@
             <div class="decorator">The prize list</div>
 
             <div class="award-list">
-              <div
-                v-for="item in IMG_LIST"
-                :key="item.id"
-                class="award-list__item"
-              >
-                <img :src="item.image_url" alt="" />
-                <span class="van-ellipsis">{{ item.title }}</span>
-              </div>
+              <template v-for="(item, index) in IMG_LIST">
+                <div v-if="index < 6" :key="item.id" class="award-list__item">
+                  <img :src="item.image_url" alt="" />
+                  <span class="van-ellipsis">{{ item.title }}</span>
+                </div>
+              </template>
             </div>
           </div>
         </special-container>
@@ -47,7 +45,7 @@
             </p>
 
             <div>
-              <h4>note:</h4>
+              <h4>Note:</h4>
               <p>1. The information you provided must be true.</p>
               <p>2. This activity is valid.</p>
             </div>
@@ -147,6 +145,8 @@ export default class Draw extends Vue {
 }
 
 .draw {
+  min-height: 100%;
+
   .main-container {
     padding: 0 0.28rem;
 
@@ -166,7 +166,7 @@ export default class Draw extends Vue {
       margin-top: 0.64rem;
 
       &__text {
-        text-align: justify;
+        // text-align: justify;
         padding: 0rem 0.4rem 0.4rem 0.4rem;
         border-radius: 0.3rem;
         background-color: #ffffff;
@@ -177,6 +177,10 @@ export default class Draw extends Vue {
         line-height: 0.5rem;
         letter-spacing: 0.02rem;
         color: #246167;
+
+        p {
+          margin-top: 0.08rem;
+        }
       }
     }
   }

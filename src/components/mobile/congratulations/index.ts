@@ -3,14 +3,15 @@ import { IRewardItem } from "@/api/types";
 let div: HTMLDivElement;
 
 class NewCongratulations {
-  open(awardInfo: IRewardItem) {
+  open(awardInfo: IRewardItem, defaultTask?: number) {
     div = document.createElement("div");
     const child = document.createElement("div");
     div.appendChild(child);
 
     const congratulations = new Congratulations({
       propsData: {
-        awardInfo
+        awardInfo,
+        defaultTask: defaultTask || 1
       }
     });
 

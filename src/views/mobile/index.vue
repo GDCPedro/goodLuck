@@ -2,7 +2,6 @@
   <Main>
     <div class="index-login">
       <Title :title="title"></Title>
-      <sub-title :txt="subTitle"></sub-title>
 
       <special-container class="form-container">
         <div class="form-container__inner">
@@ -13,7 +12,7 @@
               name="orderId"
               autocomplete="off"
               v-model="postdata.order_id"
-              placeholder="Orderid"
+              placeholder="Order ID"
               :rules="[{ required: true, message: '' }]"
             />
             <van-field
@@ -44,7 +43,6 @@
               v-model="postdata.phone"
               type="number"
               placeholder="Phone"
-              :rules="[{ required: true, message: '' }]"
             />
             <div style="width: 100%;">
               <Button
@@ -60,6 +58,12 @@
           </van-form>
         </div>
       </special-container>
+
+      <special-container style="margin-top: 0.24rem;">
+        <div class="special-sub">
+          <sub-title :txt="subTitle"></sub-title>
+        </div>
+      </special-container>
     </div>
   </Main>
 </template>
@@ -68,7 +72,7 @@
 import { Vue, Component } from "vue-property-decorator";
 import { State, Mutation } from "vuex-class";
 import newHaveDraw from "@/components/mobile/haveDraw/index";
-// import newInfoErr from "@/components/mobile/infoErr/index";
+import newInfoErr from "@/components/mobile/infoErr/index";
 import { IInfoData } from "@/api/types";
 import service from "@/api/index";
 
@@ -96,7 +100,7 @@ export default class Index extends Vue {
       "1. Activate and extend your warranty service to 2 years.",
       `2. Please fill in the following information to activate the warranty service,
       and extend it to two years. Plus, you could also participate in the lucky draw to win the prize.`,
-      "3. Support@meetdeals.com",
+      "3. Service Email: Support meetdeals.com",
       "4.Our website reserves the right of final interpretation."
     ];
   }
@@ -125,7 +129,7 @@ export default class Index extends Vue {
   }
 
   onFailed() {
-    // newInfoErr.open();
+    newInfoErr.open();
   }
 
   handleSubmit() {
@@ -134,7 +138,7 @@ export default class Index extends Vue {
         key as "order_id" | "name" | "email" | "phone"
       ];
 
-      if (!currentVal) return;
+      if (!currentVal && key !== "phone") return;
     }
     this.customerInfoSave();
   }
@@ -160,8 +164,17 @@ export default class Index extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.special-sub {
+  background-color: #fff;
+  // padding: 0.48rem 0.48rem 0.4rem 0.48rem;
+  padding: 0.4rem 0;
+  border-radius: 0.3rem;
+  margin: 0.16rem;
+}
+
 .index-login {
   padding: 0 0.3rem;
+  min-height: 100%;
 
   .form-container {
     margin-top: 0.24rem;

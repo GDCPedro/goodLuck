@@ -90,8 +90,8 @@
         <div class="congratulations-inner__steps">
           <p>1. You only need to complete one task</p>
           <p>
-            2. You must focus on our product in your Facebook post and YouTube
-            video.
+            2. If you choose the second or the third task, You must focus on our
+            product in your Facebook post and YouTube video.
           </p>
         </div>
         <footer>
@@ -126,6 +126,9 @@ export default class Congratulations extends Vue {
   })
   awardInfo!: IRewardItem;
 
+  @Prop({ type: Number, default: 1 })
+  defaultTask!: number;
+
   get activeIcon() {
     return require("@/assets/images/radio-checked.png");
   }
@@ -135,6 +138,10 @@ export default class Congratulations extends Vue {
   }
 
   taskRadio = 1;
+
+  mounted() {
+    this.setDefaultTask();
+  }
 
   handleTaskChange(e: Event) {
     console.log(this.taskRadio);
@@ -150,6 +157,10 @@ export default class Congratulations extends Vue {
 
     router.push(`/complete?mission=${this.taskRadio}`);
     newCongratulations.close();
+  }
+
+  setDefaultTask() {
+    this.taskRadio = this.defaultTask;
   }
 }
 </script>
@@ -210,6 +221,7 @@ export default class Congratulations extends Vue {
       }
 
       > span {
+        font-weight: bold;
         margin-top: 0.24rem;
         display: block;
         width: 100%;
@@ -217,7 +229,6 @@ export default class Congratulations extends Vue {
         font-family: PingFangSC-Medium;
         font-size: 0.26rem;
         line-height: 0.32rem;
-        font-weight: normal;
         font-stretch: normal;
         letter-spacing: 0;
         color: #342f35;
@@ -258,7 +269,7 @@ export default class Congratulations extends Vue {
       .cell-image {
         display: flex;
         align-items: center;
-        text-align: justify;
+        // text-align: justify;
 
         > img {
           display: inline-block;
@@ -282,7 +293,7 @@ export default class Congratulations extends Vue {
 
     &__steps {
       margin-top: 0.24rem;
-      text-align: justify;
+      // text-align: justify;
       padding: 0 0.32rem;
       font-family: ArialMT;
       font-size: 0.3rem;

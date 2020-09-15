@@ -117,7 +117,6 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import ImgUpload from "@/components/mobile/ImgUpload.vue";
 import newInfoErr from "@/components/mobile/infoErr/index";
-import { State } from "vuex-class";
 import service from "@/api/index";
 import { Toast } from "vant";
 
@@ -144,7 +143,7 @@ export default class Complete extends Vue {
     return this.$store.state.userInfo;
   }
 
-  title = "LUCKY DRAW TITLE";
+  title = "Lucky draw";
   subTitle = ["Welcome to the lucky draw. Good luck!"];
 
   file: File | null = null;
@@ -159,7 +158,7 @@ export default class Complete extends Vue {
   };
 
   onFailed() {
-    // newInfoErr.open();
+    newInfoErr.open();
   }
 
   onUploadSuccess(file: File) {
@@ -181,6 +180,7 @@ export default class Complete extends Vue {
   warrantySubmit() {
     const formData = new FormData();
     formData.append("address", this.postdata.address);
+    // eslint-disable-next-line
     formData.append("mission_file", this.file!);
 
     service.warrantySubmit(formData).then(res => {
@@ -196,7 +196,7 @@ export default class Complete extends Vue {
   }
 
   handleReset() {
-    this.$router.back();
+    this.$router.push(`/draw?mission=${this.$route.query.mission}`);
   }
 }
 </script>

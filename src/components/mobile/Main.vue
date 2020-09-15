@@ -9,10 +9,15 @@
     <footer>
       <div class="nav">
         <router-link class="nav-item" to="/policy">PRIVACY</router-link>
-        <router-link class="nav-item" to="/">LEGAL</router-link>
+        <router-link class="nav-item" to="/policy">LEGAL</router-link>
       </div>
       <div class="info">
-        <p>E-mail: {{ EMAIL }}</p>
+        <div class="info-email">
+          <div class="img">
+            <img src="@/assets/images/email.png" alt="" srcset="" />
+          </div>
+          <p>{{ EMAIL }}</p>
+        </div>
         <p>&copy;2020 {{ EMAIL }} All Rights Reserved</p>
       </div>
     </footer>
@@ -53,8 +58,8 @@ $footer-height: 2rem;
 
   footer {
     width: 100%;
-    padding-left: 20%;
-    padding-right: 20%;
+    // padding-left: 20%;
+    // padding-right: 20%;
     margin-top: 0.5rem;
     height: $footer-height;
     overflow: hidden;
@@ -107,6 +112,24 @@ $footer-height: 2rem;
       line-height: 0.4rem;
       letter-spacing: 0px;
       color: #35737a;
+
+      &-email {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .img {
+          width: 0.4rem;
+          height: 0.3rem;
+          margin-right: 0.16rem;
+
+          > img {
+            display: block;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
     }
   }
 }

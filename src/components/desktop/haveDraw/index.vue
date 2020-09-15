@@ -6,22 +6,18 @@
     :footer-hide="true"
     class="new-draw"
   >
-    <special-container style="padding: 0.2rem;">
+    <pc-special-container style="padding: 20px;">
       <div class="new-draw__inner">
         <h3>YOU HAVE A LUCKY DRAW</h3>
         <p>Whether to participate or not</p>
         <footer>
-          <Button
-            style="margin-right: 0.24rem; width: 2.6rem;"
-            @click="handleNo"
-            >NO</Button
-          >
+          <Button @click="handleNo">NO</Button>
           <Button style="width: 2.6rem;" theme="dark" @click="handleYes"
             >YES</Button
           >
         </footer>
       </div>
-    </special-container>
+    </pc-special-container>
   </Modal>
 </template>
 
@@ -46,12 +42,16 @@ export default class HaveDraw extends Vue {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .new-draw {
   background-color: transparent;
   width: 600px;
   text-align: center;
-  padding: 0;
+
+  .ivu-modal-body {
+    padding: 0;
+    border-radius: 30px;
+  }
 
   &__inner {
     font-family: PingFangSC-Semibold;
