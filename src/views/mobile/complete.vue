@@ -51,9 +51,10 @@
                 name="phone"
                 autocomplete="off"
                 v-model="postdata.phone"
-                :disabled="!userInfo.userPhone"
+                :disabled="!!userInfo.userPhone"
                 type="number"
                 placeholder="Phone"
+                :rules="[{ required: true, message: '' }]"
               />
               <van-field
                 name="orderId"
