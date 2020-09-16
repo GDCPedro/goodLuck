@@ -124,6 +124,18 @@ export default class Index extends Vue {
       if (res.code === 0) {
         this.setBrandName(res.data.brandName);
         this.setLogo(res.data.log);
+
+        document.title = res.data.brandName;
+        const link =
+          document.querySelector("link[rel*='icon']") ||
+          document.createElement("link");
+        // eslint-disable-next-line
+        (link as any).type = "image/x-icon";
+        // eslint-disable-next-line
+        (link as any).rel = "shortcut icon";
+        // eslint-disable-next-line
+        (link as any).href = res.data.log;
+        document.getElementsByTagName("head")[0].appendChild(link);
       }
     });
   }
