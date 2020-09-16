@@ -133,12 +133,18 @@ export default class Index extends Vue {
   }
 
   handleSubmit() {
+    const emailReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+
     for (const key in this.postdata) {
       const currentVal = this.postdata[
         key as "order_id" | "name" | "email" | "phone"
       ];
 
-      if (!currentVal && key !== "phone") return;
+      if (
+        (!currentVal && key !== "phone") ||
+        !emailReg.test(this.postdata.email)
+      )
+        return;
     }
     this.customerInfoSave();
   }
@@ -174,7 +180,7 @@ export default class Index extends Vue {
 
 .index-login {
   padding: 0 0.3rem;
-  min-height: 100%;
+  height: 100%;
 
   .form-container {
     margin-top: 0.24rem;

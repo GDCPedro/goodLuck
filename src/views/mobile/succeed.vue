@@ -25,10 +25,10 @@
                 Support@meetdeals.com
               </div>
             </div>
-
+            <!-- 
             <div class="contact-email">
               <div>Contact Email: {{ EMAIL }}</div>
-            </div>
+            </div> -->
           </div>
         </special-container>
       </div>
@@ -59,7 +59,7 @@ export default class Thanks extends Vue {
 
 <style lang="scss" scoped>
 .thanks {
-  min-height: 100%;
+  height: 100%;
 
   &-main {
     padding: 0.2rem;

@@ -68,7 +68,7 @@ export default class Machine extends Vue {
     }
   }
 
-  mounted() {
+  created() {
     this.autoShowAward();
   }
 

@@ -145,7 +145,7 @@ export default class Draw extends Vue {
 }
 
 .draw {
-  min-height: 100%;
+  height: 100%;
 
   .main-container {
     padding: 0 0.28rem;

@@ -55,4 +55,12 @@ const router = new VueRouter({
   routes
 });
 
+router.beforeEach((to, from, next) => {
+  // eslint-disable-next-line
+  document.getElementById("app")!.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+  next();
+});
 export default router;

@@ -47,7 +47,7 @@ $footer-height: 2rem;
 .lottery-index {
   width: 100%;
   min-height: 100%;
-  padding-top: 1.2rem;
+  // padding-top: 1.2rem;
   padding-bottom: 0.48rem;
 
   &__container {

@@ -203,7 +203,7 @@ export default class Complete extends Vue {
 
 <style lang="scss" scoped>
 .complete {
-  min-height: 100%;
+  height: 100%;
 
   &-container {
     margin-top: 0.16rem;
