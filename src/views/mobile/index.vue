@@ -100,7 +100,7 @@ export default class Index extends Vue {
       "1. Activate and extend your warranty service to 2 years.",
       `2. Please fill in the following information to activate the warranty service,
       and extend it to two years. Plus, you could also participate in the lucky draw to win the prize.`,
-      "3. Service Email: Support meetdeals.com",
+      "3. Service Email: Support@meetdeals.com",
       "4.Our website reserves the right of final interpretation."
     ];
   }
