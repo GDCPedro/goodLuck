@@ -18,7 +18,7 @@
           </div>
           <p>{{ EMAIL }}</p>
         </div>
-        <p>&copy;2020 {{ EMAIL }} All Rights Reserved</p>
+        <p>&copy;2020 Meetdeals All Rights Reserved</p>
       </div>
     </footer>
   </div>
