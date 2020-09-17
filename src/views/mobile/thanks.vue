@@ -16,7 +16,7 @@
             <h3>THANKS!</h3>
             <footer>
               <p>You now have a 2-year warranty on your product.</p>
-              <p>Please check your email for con- firmation.</p>
+              <p>Please check your email for confirmation.</p>
             </footer>
           </div>
         </special-container>
