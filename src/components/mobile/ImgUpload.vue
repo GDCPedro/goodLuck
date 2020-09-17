@@ -4,6 +4,7 @@
       action="/"
       ref="upload"
       :format="['jpg', 'jpeg', 'png']"
+      accept="image/*"
       :before-upload="handleUpload"
     >
       <div class="img-upload__inner">

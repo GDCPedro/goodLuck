@@ -89,6 +89,7 @@
               <div style="width: 100%;">
                 <Button
                   class="inner-form__button"
+                  :disabled="!postdata.taskImg"
                   long
                   theme="longDark"
                   native-type="submit"
