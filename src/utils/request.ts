@@ -15,7 +15,10 @@ service.interceptors.request.use(
   config => {
     if (!config.data || !config.data.noLoading) {
       if (isPC()) {
-        //
+        (Message as any).loading({
+          content: "Loading...",
+          duration: 0
+        });
       } else {
         Toast.loading({
           duration: 0
@@ -36,6 +39,11 @@ service.interceptors.request.use(
     return config;
   },
   error => {
+    if (isPC()) {
+      (Message as any).destroy();
+    } else {
+      Toast.clear();
+    }
     // console.log(error); // for debug
     return Promise.reject(error);
   }
@@ -43,7 +51,11 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   resp => {
-    Toast.clear();
+    if (isPC()) {
+      (Message as any).destroy();
+    } else {
+      Toast.clear();
+    }
     // TODO http异常代码处理
     // TODO 接口自定义请求异常处理
     if (resp.data.code !== 0 && resp.data.code !== 1001) {

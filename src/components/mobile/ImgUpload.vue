@@ -6,10 +6,13 @@
       :format="['jpg', 'jpeg', 'png']"
       accept="image/*"
       :before-upload="handleUpload"
+      :show-upload-list="false"
     >
       <div class="img-upload__inner">
-        <div class="desc" v-if="!imgSrc">
-          <div style="font-size: 0.5rem;"><van-icon name="plus" /></div>
+        <div class="desc" :class="{ 'pc-desc': isPc }" v-if="!imgSrc">
+          <div :class="{ 'pc-plus': isPc, 'mobile-plus': !isPc }">
+            <van-icon name="plus" />
+          </div>
           <div>Upload task picture</div>
         </div>
         <img v-else :src="imgSrc" alt="" /></div
@@ -18,12 +21,15 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, PropSync } from "vue-property-decorator";
+import { Vue, Component, PropSync, Prop } from "vue-property-decorator";
 
 @Component({})
 export default class ImgUpload extends Vue {
   @PropSync("value")
   imgFile!: File;
+
+  @Prop({ default: false })
+  isPc!: boolean;
 
   imgSrc = "";
 
@@ -44,6 +50,13 @@ export default class ImgUpload extends Vue {
 </script>
 
 <style lang="scss">
+.mobile-plus {
+  font-size: 0.5rem;
+}
+.pc-plus {
+  font-size: 40px;
+}
+
 .img-upload {
   width: 100%;
   height: 100%;
@@ -61,6 +74,10 @@ export default class ImgUpload extends Vue {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .pc-desc {
+      padding-top: 30px;
+    }
 
     .desc {
       text-align: center;

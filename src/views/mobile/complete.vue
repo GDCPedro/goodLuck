@@ -115,7 +115,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
 import ImgUpload from "@/components/mobile/ImgUpload.vue";
 import newInfoErr from "@/components/mobile/infoErr/index";
 import service from "@/api/index";
@@ -134,11 +134,13 @@ interface Postdata {
   components: { ImgUpload }
 })
 export default class Complete extends Vue {
-  @Prop({ default: () => require("@/assets/images/airpods-large.png") })
-  awardSrc!: string;
+  get awardSrc() {
+    return this.$route.query.awardSrc;
+  }
 
-  @Prop({ default: "Air Pods" })
-  awardName!: string;
+  get awardName() {
+    return this.$route.query.awardName;
+  }
 
   get userInfo() {
     return this.$store.state.userInfo;
@@ -191,7 +193,7 @@ export default class Complete extends Vue {
           this.$router.push("/succeed");
         }, 500);
       } else {
-        newInfoErr.open();
+        // newInfoErr.open();
       }
     });
   }

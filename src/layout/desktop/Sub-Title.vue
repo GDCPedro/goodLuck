@@ -1,5 +1,5 @@
 <template>
-  <div class="sub-title">
+  <div class="sub-title" :class="{ center: txt.length === 1 }">
     <template v-for="(item, index) in txt">
       <p :key="new Date().valueOf() + index">
         {{ item }}
@@ -19,10 +19,14 @@ export default class SubTitle extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.center {
+  text-align: center;
+}
+
 .sub-title {
   padding: 0 45px;
-  margin-top: 16px;
-  text-align: center;
+  // margin-top: 16px;
+  // text-align: center;
 
   p {
     font-family: ArialMT;

@@ -15,7 +15,11 @@ class NewHaveDraw {
   }
 
   close() {
-    div && div.remove();
+    console.log(div);
+
+    div.remove();
+    console.log(222);
+
     document.body.className = "";
   }
 }

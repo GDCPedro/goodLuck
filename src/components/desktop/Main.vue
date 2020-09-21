@@ -11,13 +11,10 @@
       <footer>
         <div class="nav">
           <router-link class="nav-item" to="/policy">PRIVACY</router-link>
-          <router-link class="nav-item" to="/">LEGAL</router-link>
+          <router-link class="nav-item" to="/policy">LEGAL</router-link>
         </div>
         <div class="info">
-          <span
-            >E-mail: {{ EMAIL }} &copy;2020 {{ EMAIL }} All Rights
-            Reserved</span
-          >
+          <span>&copy;2020 Meetdeals All Rights Reserved</span>
         </div>
       </footer>
     </div>

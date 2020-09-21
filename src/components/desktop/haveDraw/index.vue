@@ -6,13 +6,20 @@
     :footer-hide="true"
     class="new-draw"
   >
-    <pc-special-container style="padding: 20px;">
+    <pc-special-container style="padding: 12px;">
       <div class="new-draw__inner">
         <h3>YOU HAVE A LUCKY DRAW</h3>
         <p>Whether to participate or not</p>
         <footer>
-          <Button @click="handleNo">NO</Button>
-          <Button style="width: 2.6rem;" theme="dark" @click="handleYes"
+          <Button
+            style="width: 200px;margin-right:20px;font-size:18px;"
+            @click="handleNo"
+            >NO</Button
+          >
+          <Button
+            style="width: 200px;font-size:18px;"
+            theme="dark"
+            @click="handleYes"
             >YES</Button
           >
         </footer>
@@ -23,7 +30,7 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import newHaveDraw from "@/components/mobile/haveDraw/index";
+import newHaveDraw from "@/components/desktop/haveDraw/index";
 import router from "@/router";
 
 @Component({})
@@ -31,13 +38,15 @@ export default class HaveDraw extends Vue {
   show = true;
 
   handleNo() {
-    newHaveDraw.close();
-    router.push("/thanks");
+    // newHaveDraw.close();
+    this.show = false;
+    router.push("/pc/thanks");
   }
 
   handleYes() {
-    router.push("/draw");
-    newHaveDraw.close();
+    router.push("/pc/draw");
+    // newHaveDraw.close();
+    this.show = false;
   }
 }
 </script>
@@ -47,6 +56,15 @@ export default class HaveDraw extends Vue {
   background-color: transparent;
   width: 600px;
   text-align: center;
+
+  .special-container__slot {
+    padding: 0;
+  }
+
+  .ivu-modal-content {
+    background-color: transparent;
+    box-shadow: none;
+  }
 
   .ivu-modal-body {
     padding: 0;
@@ -78,6 +96,10 @@ export default class HaveDraw extends Vue {
       line-height: 45px;
       letter-spacing: 0px;
       color: #246167;
+    }
+
+    footer {
+      margin-top: 64px;
     }
   }
 }

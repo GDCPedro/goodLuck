@@ -75,7 +75,7 @@ export default class Index extends Vue {
       "1. Activate and extend your warranty service to 2 years.",
       `2. Please fill in the following information to activate the warranty service,
       and extend it to two years. Plus, you could also participate in the lucky draw to win the prize.`,
-      "3. Support@meetdeals.com",
+      "3. Service Email: Support@meetdeals.com",
       "4.Our website reserves the right of final interpretation."
     ];
   }
@@ -90,13 +90,16 @@ export default class Index extends Vue {
 
   postdataRules = {
     // eslint-disable-next-line
-    order_id: [{ required: true }],
-    name: [{ required: true }],
-    email: [{ required: true }],
-    phone: [
-      { required: true },
-      { pattern: /\d/, message: "please enter valid phone number" }
-    ]
+    order_id: [{ required: true, message: "Please enter OrderId" }],
+    name: [{ required: true, message: "Please enter name" }],
+    email: [
+      { required: true, message: "Please enter email" },
+      {
+        pattern: /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/,
+        message: "Please enter valid email"
+      }
+    ],
+    phone: [{ pattern: /\d/, message: "Please enter valid phone number" }]
   };
 
   mounted() {
@@ -106,11 +109,29 @@ export default class Index extends Vue {
   }
 
   handleSubmit() {
-    newHaveDraw.open();
+    // newHaveDraw.open();
 
     (this.$refs.formCustom as Form).validate(valid => {
       if (valid) {
-        //
+        this.customerInfoSave();
+      }
+    });
+  }
+
+  customerInfoSave() {
+    service.customerInfoSave(this.postdata).then(res => {
+      console.log(res);
+      if (res.code === 0) {
+        //成功返回了user_id
+        this.setUserId(res.data.user_id);
+        this.setUserInfo({
+          userName: this.postdata.name,
+          userEmail: this.postdata.email,
+          userPhone: this.postdata.phone,
+          // eslint-disable-next-line
+          userOrderId: this.postdata.order_id
+        });
+        newHaveDraw.open();
       }
     });
   }

@@ -32,7 +32,15 @@ const routes: Array<RouteConfig> = [
   {
     path: "/thanks",
     name: "thanks",
-    component: () => import("@/views/mobile/thanks.vue")
+    component: () => import("@/views/mobile/thanks.vue"),
+    beforeEnter: (to, from, next) => {
+      if (isPC()) {
+        return next({
+          path: `/pc${to.path}`
+        });
+      }
+      next();
+    }
   },
   {
     path: "/succeed",
