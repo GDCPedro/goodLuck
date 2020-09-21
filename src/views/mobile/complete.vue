@@ -11,7 +11,7 @@
     <div class="complete-container">
       <special-container style="padding: 0.2rem;">
         <div class="complete-container__inner">
-          <h4 class="title">MISSON COMPLETED</h4>
+          <h4 class="title">MISSION COMPLETED</h4>
 
           <div class="inner-img">
             <img :src="awardSrc" alt="" srcset="" />

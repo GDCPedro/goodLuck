@@ -8,7 +8,7 @@
 
       <pc-special-container class="pc-complete__inner">
         <div class="inner-title">
-          <h3>PURCHASE INFOMATION</h3>
+          <h3>MISSION COMPLETE</h3>
         </div>
 
         <div class="inner-img">
@@ -168,6 +168,8 @@ export default class Complete extends Vue {
 
   onUploadSuccess(file: File) {
     this.file = file;
+    this.postdata.taskImg = file;
+    (this.$refs.formComplete as Form).validate();
   }
 
   handleSubmit() {

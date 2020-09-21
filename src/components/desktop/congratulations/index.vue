@@ -371,7 +371,7 @@ export default class Congratulations extends Vue {
       box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.028);
 
       font-family: PingFangSC-Semibold;
-      font-size: 12px;
+      font-size: 18px;
       padding: 16px 0;
       font-weight: normal;
       font-stretch: normal;

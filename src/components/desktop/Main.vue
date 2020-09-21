@@ -14,6 +14,12 @@
           <router-link class="nav-item" to="/policy">LEGAL</router-link>
         </div>
         <div class="info">
+          <div class="info-email">
+            <div class="img">
+              <img src="@/assets/images/email.png" alt="" srcset="" />
+            </div>
+            <p>{{ EMAIL }}</p>
+          </div>
           <span>&copy;2020 Meetdeals All Rights Reserved</span>
         </div>
       </footer>
@@ -127,6 +133,24 @@ export default class Main extends Vue {
         line-height: 40px;
         letter-spacing: 0px;
         color: #35737a;
+
+        &-email {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .img {
+            width: 20px;
+            height: 15px;
+            margin-right: 8px;
+
+            > img {
+              display: block;
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
       }
     }
   }
