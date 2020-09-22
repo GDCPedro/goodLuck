@@ -13,7 +13,7 @@
             <FormItem prop="order_id">
               <Input
                 type="text"
-                placeholder="OrderId"
+                placeholder="Order ID"
                 v-model="postdata.order_id"
               />
             </FormItem>
@@ -90,7 +90,7 @@ export default class Index extends Vue {
 
   postdataRules = {
     // eslint-disable-next-line
-    order_id: [{ required: true, message: "Please enter OrderId" }],
+    order_id: [{ required: true, message: "Please enter Order ID" }],
     name: [{ required: true, message: "Please enter name" }],
     email: [
       { required: true, message: "Please enter email" },

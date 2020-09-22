@@ -152,7 +152,6 @@ export default class Complete extends Vue {
     orderId: [{ required: true, message: "Please enter OrderId" }],
     name: [{ required: true, message: "Please enter name" }],
     taskImg: [{ required: true, message: "Please upload task picture" }],
-    address: [{ required: true, message: "Please enter address" }],
     email: [
       { required: true, message: "Please enter email" },
       {

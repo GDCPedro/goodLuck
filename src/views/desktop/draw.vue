@@ -164,7 +164,7 @@ export default class Draw extends Vue {
     padding: 0 0.28rem;
 
     .list-container {
-      margin-top: 40px;
+      margin-top: 120px;
       position: relative;
 
       &__content {

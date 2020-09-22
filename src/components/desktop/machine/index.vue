@@ -3,9 +3,9 @@
     <div class="machine-bg">
       <div class="award-container">
         <div
-          class="award-scroll scroll-start"
+          class="award-scroll scroll-start move"
           id="award-scroll"
-          :class="{ move: started }"
+          :class="{ 'to-selected-move': shouldEnd }"
         >
           <template v-for="item in imgList">
             <div :key="item.id" class="award-scroll__item">
@@ -43,6 +43,8 @@ export default class Machine extends Vue {
   imgList: IRewardItem[] = [];
 
   started = false;
+
+  shouldEnd = false;
 
   imgIdx = 0;
 
@@ -141,7 +143,7 @@ export default class Machine extends Vue {
 
   warrantyBegin() {
     this.buttonPressed = true;
-    // Toast.loading({ duration: 0 });
+    Toast.loading({ duration: 0 });
 
     service
       .warrantyBegin()
@@ -164,12 +166,13 @@ export default class Machine extends Vue {
         }
       })
       .finally(() => {
-        // Toast.clear();
+        Toast.clear();
         this.buttonPressed = false;
       });
   }
 
   toSelectedAward(award: IRewardItem) {
+    this.shouldEnd = true;
     const idx = this.list.findIndex(item => item.id === award.id);
 
     // eslint-disable-next-line
@@ -177,7 +180,24 @@ export default class Machine extends Vue {
 
     const value = -44 + 165 * (idx + 1);
 
-    scrollElement.style.transform = "translateX(" + value + "px)";
+    const style = document.styleSheets[0] as CSSStyleSheet;
+
+    // 奖品列表的长度
+    const listLen = this.list.length;
+
+    const max = -44 + 165 * listLen;
+
+    this.started = true;
+
+    style.insertRule(`@keyframes to-select-move {
+      from {
+        transform: transform: translateX(-${(listLen - 1) * 165 - 121}px);
+      }
+
+      to {
+        transform: translateX(${value}px);
+      }
+    }`);
   }
 }
 </script>
@@ -196,6 +216,7 @@ export default class Machine extends Vue {
 .machine {
   width: 518px;
   height: 483px;
+  transform: scale(1.2);
 
   &-bg {
     width: 100%;
@@ -221,6 +242,13 @@ export default class Machine extends Vue {
         -webkit-animation-direction: alternate; /* Safari 和 Chrome */
       }
 
+      .to-selected-move {
+        animation-iteration-count: 1 !important;
+        animation: to-select-move 1s 0s ease infinite;
+        animation-direction: alternate;
+        -webkit-animation-direction: alternate; /* Safari 和 Chrome */
+      }
+
       .award-scroll {
         transform: translateX(-374px);
         // transform: translateX(-44px + 165px);
@@ -228,7 +256,7 @@ export default class Machine extends Vue {
         white-space: nowrap;
         animation-iteration-count: infinite;
         transition-timing-function: ease-in-out;
-        transition: transform 0.1s;
+        transition: transform 1s;
         -webkit-transition: -webkit-transform 0.1s;
 
         &__item {
