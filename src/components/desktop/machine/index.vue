@@ -185,8 +185,6 @@ export default class Machine extends Vue {
     // 奖品列表的长度
     const listLen = this.list.length;
 
-    const max = -44 + 165 * listLen;
-
     this.started = true;
 
     style.insertRule(`@keyframes to-select-move {

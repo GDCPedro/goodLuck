@@ -181,7 +181,7 @@ export default class Complete extends Vue {
 
   warrantySubmit() {
     const formData = new FormData();
-    formData.append("address", this.postdata.address);
+    formData.append("address", this.postdata.address || "0");
     // eslint-disable-next-line
     formData.append("mission_file", this.file!);
 
